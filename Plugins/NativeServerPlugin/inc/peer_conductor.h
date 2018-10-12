@@ -85,6 +85,12 @@ public:
 	//  A data buffer was successfully received.
 	virtual void OnMessage(const DataBuffer& buffer) override;
 
+	// Send message down a data channel to the client mirroring the functionality
+	// to receive messages up the channel.
+	virtual void SendChannelMessage(
+		rtc::scoped_refptr<webrtc::DataChannelInterface> channel,
+		const DataBuffer& buffer);
+
 	virtual void OnStateChange() override;
 
 	void AllocatePeerConnection(bool create_offer = false);

@@ -144,6 +144,13 @@ void PeerConductor::OnMessage(const DataBuffer& buffer)
 	SignalDataChannelMessage.emit(Id(), message);
 }
 
+void PeerConductor::SendChannelMessage(
+	rtc::scoped_refptr<webrtc::DataChannelInterface> channel,
+	const DataBuffer& buffer)
+{
+	channel->Send(buffer);
+}
+
 void PeerConductor::OnStateChange() {}
 
 void PeerConductor::AllocatePeerConnection(bool create_offer)
